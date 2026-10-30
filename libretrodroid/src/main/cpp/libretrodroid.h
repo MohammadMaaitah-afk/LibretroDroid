@@ -107,6 +107,7 @@ public:
     void onTouchEvent(float xAxis, float yAxis);
 
     void refreshAspectRatio();
+    void setAspectRatioOverride(float value);
     float getAspectRatio();
 
     bool requiresVideoRefresh() const;

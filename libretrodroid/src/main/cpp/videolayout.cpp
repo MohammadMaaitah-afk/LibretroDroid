@@ -50,7 +50,7 @@ void VideoLayout::updateForegroundVertices() {
     float screenW = screenWidth * viewportRect.getWidth();
     float screenH = screenHeight * viewportRect.getHeight();
     float screenAspect = screenW / screenH;
-    float contentAspect = aspectRatio;
+    float contentAspect = aspectRatio > 0 ? aspectRatio : screenAspect;
 
     float scaleX = viewportRect.getWidth();
     float scaleY = viewportRect.getHeight();

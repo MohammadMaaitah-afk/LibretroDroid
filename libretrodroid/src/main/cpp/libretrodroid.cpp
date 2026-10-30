@@ -490,7 +490,18 @@ void LibretroDroid::step() {
     }
 }
 
+static float aspectRatioOverride = 0.0F;
+
+void LibretroDroid::setAspectRatioOverride(float value) {
+    aspectRatioOverride = value;
+    if (video) {
+        refreshAspectRatio();
+    }
+}
+
 float LibretroDroid::getAspectRatio() {
+    // > 0 forces a fixed aspect ratio, < 0 stretches to fill the screen, 0 keeps the original
+    if (aspectRatioOverride != 0.0F) return aspectRatioOverride;
     float gameAspectRatio = Environment::getInstance().retrieveGameSpecificAspectRatio();
     return gameAspectRatio > 0 ? gameAspectRatio : defaultAspectRatio;
 }

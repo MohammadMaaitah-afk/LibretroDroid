@@ -343,6 +343,7 @@ class GLRetroView(
     // These functions are called from the GL thread.
     private fun initializeCore() = catchExceptions {
         if (isGameLoaded) return@catchExceptions
+        LibretroDroid.setAspectRatioOverride(data.aspectRatioOverride)
         when {
             data.gameFilePath != null -> loadGameFromPath(data.gameFilePath!!)
             data.gameFileBytes != null -> loadGameFromBytes(data.gameFileBytes!!)
@@ -489,6 +490,12 @@ class GLRetroView(
     private fun sendRumbleEvent(port: Int, strengthWeak: Float, strengthStrong: Float) {
         lifecycle?.coroutineScope?.launch {
             rumbleEventsSubject.emit(RumbleEvent(port, strengthWeak, strengthStrong))
+        }
+    }
+
+    fun setAspectRatioOverride(value: Float) {
+        runOnEmulationThread(true) {
+            LibretroDroid.setAspectRatioOverride(value)
         }
     }
 

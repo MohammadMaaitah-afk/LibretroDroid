@@ -35,6 +35,9 @@ class GLRetroViewData(context: Context) {
     var skipDuplicateFrames: Boolean = false
     var enableMicrophone: Boolean = false
     var immersiveMode: ImmersiveMode? = null
+
+    // 0 keeps the original aspect ratio, a positive value forces it, a negative value stretches to fill
+    var aspectRatioOverride: Float = 0.0f
 }
 
 enum class ViewportAlignment(val value: Int) {
